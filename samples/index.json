@@ -1,0 +1,38 @@
+[
+  {
+    "id": "clean_orders",
+    "title": "fct_orders - a clean incremental model",
+    "model_name": "fct_orders",
+    "description": "The control case: incremental with a guard, a unique_key, an explicit column list, a documented grain and real tests."
+  },
+  {
+    "id": "fanout_dashboard",
+    "title": "fct_customer_orders - fanout over two detail tables",
+    "model_name": "fct_customer_orders",
+    "description": "Joins orders and order items, then counts and sums. The classic double-counting bug, plus a grain column with no unique test."
+  },
+  {
+    "id": "incremental_no_guard",
+    "title": "fct_events - incremental with no guard",
+    "model_name": "fct_events",
+    "description": "Declared incremental but has no is_incremental() guard and no unique_key, so every run appends the whole table again."
+  },
+  {
+    "id": "hardcoded_legacy",
+    "title": "legacy_sales_daily - hard-coded tables, select *, limit",
+    "model_name": "legacy_sales_daily",
+    "description": "A legacy hand-written model: literal database.schema tables, select *, a hard-coded date and a limit that silently truncates the data."
+  },
+  {
+    "id": "left_join_filter",
+    "title": "fct_orders_enriched - LEFT JOIN filtered in WHERE",
+    "model_name": "fct_orders_enriched",
+    "description": "A LEFT JOIN whose right-hand relation is filtered in WHERE, which quietly turns it into an INNER JOIN and drops unmatched orders."
+  },
+  {
+    "id": "untested_view",
+    "title": "DIM_CUSTOMERS - an undocumented view",
+    "model_name": "DIM_CUSTOMERS",
+    "description": "Upper-case view over literal tables, no schema.yml at all, a reserved word as a column name and a magic number in the HAVING clause."
+  }
+]

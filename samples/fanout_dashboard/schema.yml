@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: fct_customer_orders
+    description: "Customer level order summary used by the lifecycle dashboard."
+    columns:
+      - name: customer_id
+        description: "The customer the orders belong to."
+        data_tests:
+          - not_null
+      - name: customer_name
+        description: "Customer display name at the time of the order."
+      - name: order_count
+        description: "Number of orders placed by the customer."
+      - name: lifetime_value
+        description: "Total order value for the customer."

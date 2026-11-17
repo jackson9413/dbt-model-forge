@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: fct_orders_enriched
+    description: "Orders with customer and product attributes attached."
+    columns:
+      - name: order_id
+        description: "Primary key of the order."
+        data_tests:
+          - not_null
+      - name: customer_id
+        description: "The customer who placed the order."
+      - name: order_total
+        description: "Order total in USD."
+      - name: customer_name
+        description: "Customer display name."
+      - name: product_count
+        description: "Number of products on the order."

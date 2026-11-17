@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dbt-model-forge - local-first dbt model review</title>
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="mark">dbt</span>
+    <div>
+      <h1>dbt-model-forge</h1>
+      <p>Paste a dbt model. Get the grain, the fanout risks and the fix list.</p>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <span class="badge local">local-first</span>
+    <span class="badge">no API keys</span>
+    <span class="badge">nothing leaves this machine</span>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="panel input-panel">
+    <div class="row">
+      <label class="field">
+        <span>Model name</span>
+        <input id="model-name" type="text" placeholder="fct_orders" autocomplete="off">
+      </label>
+      <label class="field">
+        <span>Review profile</span>
+        <select id="profile"></select>
+      </label>
+    </div>
+
+    <label class="field">
+      <span>Load a sample</span>
+      <select id="sample-select"><option value="">Choose a sample model...</option></select>
+    </label>
+
+    <label class="field">
+      <span>Model SQL</span>
+      <textarea id="sql" spellcheck="false" placeholder="paste the model SQL here, with its config() block"></textarea>
+    </label>
+
+    <label class="field">
+      <span>schema.yml <em>optional - paste the model entry so testing can be assessed</em></span>
+      <textarea id="yaml" spellcheck="false" placeholder="models:&#10;  - name: fct_orders&#10;    description: ..."></textarea>
+    </label>
+
+    <div class="actions">
+      <button id="run" class="primary">Review the model</button>
+      <label class="check"><input type="checkbox" id="save"> save to history</label>
+      <span id="status" class="status"></span>
+    </div>
+  </section>
+
+  <section class="panel results-panel" id="results">
+    <div class="empty" id="empty">
+      <h2>Nothing reviewed yet</h2>
+      <p>Paste a model on the left, or load one of the six sample models to see what the reviewer catches.</p>
+    </div>
+    <div id="output" hidden></div>
+  </section>
+</main>
+
+<section class="panel history-panel">
+  <h2>Review history</h2>
+  <p class="muted">Every review stays in a local SQLite file. Rate the ones that were useful.</p>
+  <div id="runs"></div>
+</section>
+
+<footer>
+  <p>dbt-model-forge - a local-first dbt model review workbench. Flask, SQLite and vanilla JS. No network calls, no LLM.</p>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
